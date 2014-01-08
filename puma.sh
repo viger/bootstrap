@@ -104,6 +104,7 @@ start_server(){
    check_pid
 
    echo -e "starting puma server...";
+   cd $APP_ROOT
    if [ -f $CONFIG_PATH ]; then
        puma -C $CONFIG_PATH;
    else
