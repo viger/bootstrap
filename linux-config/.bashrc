@@ -1,4 +1,8 @@
 # .bashrc
+function parse_git_branch_and_add_brackets {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
+}
+PS1="\e[01;33m\A \e[01;35m\u\e[01;30m@\e[01;32m\h\[\e[00m [\e[01;34m\W\e[0m]\[\033[0;32m\]\$(parse_git_branch_and_add_brackets) \[\033[0m\]\$ "
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -13,7 +17,4 @@ if [ -d /etc/bash_completion.d ]; then
 fi
 
 # User specific aliases and functions
-alias authzhe800='bundle exec rake editor:create_admin username=chenziwei'
-alias puall='~/pull_master_develop.sh'
-
 alias tmux="tmux -2"
